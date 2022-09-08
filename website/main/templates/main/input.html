@@ -1,0 +1,44 @@
+<!-- HTML markup of derived (child) template -->
+<!--
+    Inherits html markup from base template and can add to it
+    
+    This separation of concerns ensures template re-usability
+
+    DRY (Don't Repeat Yourself) principle:
+    - avoids unecessary repetition of information
+    - simplifies the code base of the web app 
+      and makes it easier to manage and maintain
+-->
+{% extends 'main/shapeform.html' %}
+<!-- 
+    Overrides block named content 
+    - replaces html markup in extended template
+-->
+{% block content %}
+<!-- Inserts style html template within current template -->
+{% include 'main/style.html' %}
+<!-- Inserts header html template within current template -->
+{% include 'main/header.html' %}
+<!-- Shape Form -->
+<main>
+    <form action="chk_shape" method="POST">
+        {% csrf_token %}
+        <fieldset>
+            <legend>Shape Form:</legend><br>
+            Select a shape name:&nbsp;&nbsp; 
+            <select name="shape">
+                <option value="square" default>Square</option>
+                <option value="triangle">Triangle</option> 
+                <option value="circle">Circle</option>
+            </select><br><br>
+            Enter a length:&nbsp;&nbsp;
+            <input type="number" name="len" 
+            min="1" max="100" required>&nbsp;&nbsp;cm<br><br>
+            <input type="submit">
+        </fieldset>
+    </form>
+</main>
+<!-- Inserts footer html template within current template -->   
+{% include 'main/footer.html' %}
+<!-- Ends the current block -->
+{% endblock %}

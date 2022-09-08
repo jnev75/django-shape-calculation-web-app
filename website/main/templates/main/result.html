@@ -1,0 +1,38 @@
+<!-- HTML markup of derived (child) template -->
+<!--
+    Inherits html markup from base template and can add to it
+    
+    This separation of concerns ensures template re-usability
+
+    DRY (Don't Repeat Yourself) principle:
+    - avoids unecessary repetition of information
+    - simplifies the code base of the web app 
+      and makes it easier to manage and maintain
+-->
+{% extends 'main/shapeform.html' %}
+<!-- 
+    Overrides block named content 
+    - replaces html markup in extended template
+-->
+{% block content %}
+<!-- Inserts style html template within current template -->
+{% include 'main/style.html' %}
+<!-- Inserts header html template within current template -->
+{% include 'main/header.html' %}
+<!-- Shape Measurement Results -->
+<main>
+    <fieldset>
+        <legend>Shape Measurement Results:</legend>
+        <p>Shape:&nbsp;&nbsp;{{ shape_name }}</p>
+        <p>Area:&nbsp;&nbsp;
+        <input type="text" value="{{ area }}" readonly>&nbsp;&nbsp;cm<sup>2</sup></p>
+        <p>Boundary length:&nbsp;&nbsp;
+        <input type="text" value="{{ perimeter }}" readonly>&nbsp;&nbsp;cm</p>
+    </fieldset>
+
+    <br><a href="http://127.0.0.1:8000/">Return</a> 
+</main>
+<!-- Inserts footer html template within current template --> 
+{% include 'main/footer.html' %}
+<!-- Ends the current block -->
+{% endblock %}
